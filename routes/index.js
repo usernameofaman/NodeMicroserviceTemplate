@@ -13,4 +13,5 @@ module.exports = (app) => {
      */
     app.post("/login", ValidationManger.validateUserLogin, new UserModule().loginUser);
     app.post("/api/register", ValidationManger.validateUserSignUp, new UserModule().registerUser);
+    app.get("/userDetails", new UserModule().getUser);
 };

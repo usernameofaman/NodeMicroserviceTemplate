@@ -44,4 +44,19 @@ export default class Manger {
 
         return { status: 'success' };
     }
+
+    getUser = async (requestData) => {
+        const { email } = requestData;
+        try {
+            const user = await User.findOne({ email }).lean();
+            if(user && user.email)
+                return user;
+        } catch (error) {
+            if (error.code === 11000) {
+                // duplicate key
+                return { status: 'error', error: 'Unable to get' }
+            }
+            throw error
+        }
+    }
 }
