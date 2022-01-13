@@ -5,7 +5,9 @@ module.exports = {
   validateUserLogin: async (req, res, next) => {
     const schema = yup.object().shape({
       email: yup.string().email(),
-      password: yup.string().min(8).required()
+      password: yup.string().min(8).required(),
+      firstName : yup.string().required(),
+      lastName : yup.string().required(),
     })
     await validate(schema, req.body, res, next)
   }

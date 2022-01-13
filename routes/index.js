@@ -2,7 +2,7 @@
  * Created by AyushK on 18/09/20.
  */
 import * as ValidationManger from "../middleware/validation";
-import TestModule from "../app/modules/testModule";
+import UserModule from "../app/modules/user";
 import {stringConstants} from "../app/common/constants";
 
 module.exports = (app) => {
@@ -11,5 +11,6 @@ module.exports = (app) => {
     /**
      * route definition
      */
-    app.get("/test-route", ValidationManger.validateUserLogin, new TestModule().testRoute);
+    app.post("/login", ValidationManger.validateUserLogin, new UserModule().loginUser);
+    app.post("/api/register", ValidationManger.validateUserLogin, new UserModule().registerUser);
 };
