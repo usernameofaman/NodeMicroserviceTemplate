@@ -6,11 +6,18 @@ module.exports = {
     const schema = yup.object().shape({
       email: yup.string().email(),
       password: yup.string().min(8).required(),
+    })
+    await validate(schema, req.body, res, next)
+  },
+  validateUserSignUp: async (req, res, next) => {
+    const schema = yup.object().shape({
+      email: yup.string().email(),
+      password: yup.string().min(8).required(),
       firstName : yup.string().required(),
       lastName : yup.string().required(),
     })
     await validate(schema, req.body, res, next)
-  }
+  },
 }
 
 const validate = async (schema, reqData, res, next) => {

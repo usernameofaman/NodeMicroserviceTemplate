@@ -12,5 +12,5 @@ module.exports = (app) => {
      * route definition
      */
     app.post("/login", ValidationManger.validateUserLogin, new UserModule().loginUser);
-    app.post("/api/register", ValidationManger.validateUserLogin, new UserModule().registerUser);
+    app.post("/api/register", ValidationManger.validateUserSignUp, new UserModule().registerUser);
 };
