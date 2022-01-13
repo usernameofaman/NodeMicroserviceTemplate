@@ -10,7 +10,7 @@ export default class Manger {
 
 
         if (!user) {
-            return res.json({ status: 'error', error: 'Invalid email' })
+            return { status: 'error', error: 'Invalid email' }
         }
 
         if (user.password === password) {
@@ -37,8 +37,7 @@ export default class Manger {
         } catch (error) {
             if (error.code === 11000) {
                 // duplicate key
-                console.log(error)
-                return res.json({ status: 'error', error: 'Email already in use' })
+                return { status: 'error', error: 'Email already in use' }
             }
             throw error
         }
