@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 
 export default class Manger {
     loginUser = async (requestData) => {
-        const { email, password } = requestData;
-        const user = await User.findOne({ email }).lean();
+        const { name, password } = requestData;
+        const user = await User.findOne({ name }).lean();
         const JWT_SECRET = 'sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk'
 
 
@@ -18,7 +18,7 @@ export default class Manger {
             const token = jwt.sign(
                 {
                     id: user._id,
-                    email: user.email
+                    name: user.name
                 },
                 JWT_SECRET
             )
@@ -28,10 +28,10 @@ export default class Manger {
     }
 
     registerUser = async (requestData) => {
-        const { email, firstName, lastName, password } = requestData;
+        const { name, selectedBoardId, selectedMediumId,selectedStandardId, password } = requestData;
         try {
             const response = await User.create({
-                email, firstName, lastName, password
+                name, selectedBoardId, selectedMediumId,selectedStandardId, password
             })
             console.log('User created successfully: ', response)
         } catch (error) {
